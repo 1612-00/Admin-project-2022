@@ -1,0 +1,64 @@
+@use '../../scss/abstracts/' as *;
+
+.sidebar {
+    position: fixed;
+    background-color: $mainColor;
+    width: $sidebarWidth;
+    height: 100vh;
+    margin-top: $topNavHeight;
+    transition: all 0.2s ease;
+    z-index: 50;
+
+    &.hide {
+        width: $sidebarHideWidth;
+        transition: all 0.2s ease;
+
+        .sidebar__user__name,
+        .sidebar-nav-item__tab__text {
+            display: none;
+        }
+    }
+
+    @include tablet {
+        left: calc(0rem - $sidebarWidth);
+
+        &.hide {
+            left: 0;
+            width: $sidebarWidth;
+            transition: all 0.2s ease;
+
+            .sidebar__user__name,
+            .sidebar-nav-item__tab__text {
+                display: block;
+            }
+        }
+    }
+
+    &__user {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-left: 1.3rem;
+        @include flex(center, flex-start);
+
+        & > img {
+            --size: 30px;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+        }
+
+        &__name {
+            margin-left: 1rem;
+            font-size: smaller;
+            opacity: 0.7;
+        }
+    }
+
+    & > hr {
+        opacity: 0.1;
+    }
+
+    &__menu {
+        padding-left: 1.3rem;
+    }
+}
