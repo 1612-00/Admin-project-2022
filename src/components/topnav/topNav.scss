@@ -5,7 +5,6 @@
     position: fixed;
     width: 100%;
     height: $topNavHeight;
-    background-color: $mainColor;
     @include flex(center, space-between);
     transition: all 0.2s ease;
 
@@ -51,7 +50,6 @@
             font-size: x-large;
             font-weight: 700;
             padding-left: 0.5rem;
-            color: #fff;
         }
     }
 
@@ -77,11 +75,10 @@
                 cursor: pointer;
 
                 & > i {
-                    font-size: 1.3rem;
+                    font-size: 1.2rem;
 
                     @include tablet {
                         font-size: 1rem;
-                        color: $txtColor;
                     }
 
                     @include mobile {
@@ -91,8 +88,7 @@
             }
 
             &__about {
-                opacity: 0.6;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 font-weight: 400;
                 cursor: pointer;
 
@@ -110,10 +106,9 @@
             &__chat,
             &__envelope {
                 @include flex(center, center);
-                font-size: 1.3rem;
+                font-size: 1.1rem;
                 font-weight: 100;
                 cursor: pointer;
-                color: $txtColor;
 
                 @include tablet {
                     font-size: 1rem;

@@ -8,8 +8,6 @@
 
     &__content {
         position: relative;
-        color: $txtColor;
-        background-color: $mainColor;
         border-radius: 5px;
         height: 26rem;
 
@@ -67,10 +65,19 @@
         }
 
         &__mid {
+            padding: 1rem 3rem;
             @include flex(center, center);
             & > svg {
-                width: 10rem;
-                height: 10rem;
+                width: 5rem;
+                height: 5rem;
+            }
+
+            @include tablet {
+                padding: 1rem 43%;
+            }
+
+            @include mobile {
+                padding: 1rem 35%;
             }
         }
 
@@ -81,7 +88,6 @@
 
                 &__text {
                     font-size: 0.9rem;
-                    color: $txtColor;
                 }
 
                 &__value {

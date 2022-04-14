@@ -9,7 +9,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Layout />}>
+                <Route path='/' element={<Layout />} >
                     <Route index element={<Dashboard />} />
                     <Route path='/apps/notes' element={<BlankPage />} />
                     <Route path='/apps/chat' element={<BlankPage />} />

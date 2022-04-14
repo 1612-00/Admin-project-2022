@@ -1,36 +1,325 @@
 @use '../scss/abstracts/' as *;
 
-.main {
-    padding-top: calc($topNavHeight + 2rem);
-    padding-left: $sidebarWidth;
-    overflow-x: hidden;
+.layout {
+    .main {
+        padding-top: calc($topNavHeight + 2rem);
+        padding-left: $sidebarWidth;
+        overflow-x: hidden;
 
-    &__content {
-        min-height: 100vh;
-        transition: all 0.5s ease-in-out;
-    }
-
-    &.hide {
-        padding-left: $sidebarHideWidth;
-        transition: all 0.5s ease-in-out;
-    }
-
-    @include tablet {
-        padding-left: 0;
+        &__content {
+            min-height: 100vh;
+            transition: all 0.3s ease-in-out;
+        }
 
         &.hide {
-            padding-left: 0;
-            transition: all 0.5s ease-in-out;
+            padding-left: $sidebarHideWidth;
+            transition: all 0.3s ease-in-out;
+        }
 
-            .overlay {
-                background-color: $overlay;
-                position: fixed;
-                top: $topNavHeight;
-                left: 0;
-                height: 100vh;
-                width: 100vw;
-                z-index: 1;
-                opacity: 0.4;
+        @include tablet {
+            padding-left: 0;
+
+            &.hide {
+                padding-left: 0;
+                transition: all 0.3s ease-in-out;
+
+                .overlay {
+                    background-color: $overlay;
+                    position: fixed;
+                    top: $topNavHeight;
+                    left: 0;
+                    height: 100vh;
+                    width: 100vw;
+                    z-index: 1;
+                    opacity: 0.4;
+                }
+            }
+        }
+    }
+
+    &.dark {
+        & > .sidebar {
+            background-color: $mainColor;
+            color: $txtColor;
+        }
+
+        & > .topNav {
+            background-color: $mainColor;
+            color: $txtColor;
+
+            #fill1OfLogo {
+                fill: white;
+            }
+            #fill2OfLogo {
+                fill: white;
+            }
+        }
+
+        & > .main {
+            background-color: $mainBg;
+            color: $txtColor;
+        }
+
+        .box__content {
+            background-color: $mainColor;
+        }
+
+        .boxChartCircle__content {
+            color: $txtColor;
+            background-color: $mainColor;
+        }
+
+        .boxChartLine__content {
+            color: $txtColor;
+            background-color: $mainColor;
+
+            &__top__combo-box {
+                border: 1px solid rgba($color: #fff, $alpha: 0.3);
+
+                & > select {
+                    color: $txtColor;
+                    background-color: $mainColor;
+                }
+            }
+        }
+
+        .box-user {
+            background-color: $mainColor;
+        }
+
+        .user-tab {
+            &:hover {
+                background-color: $mainBg;
+            }
+        }
+
+        .theme-setting {
+            background-color: $mainColor;
+            color: $txtColor;
+        }
+    }
+
+    &.light {
+        & > .sidebar {
+            background-color: $white;
+            color: $txtColor-Light;
+        }
+
+        & > .topNav {
+            background-color: $white;
+            color: $txtColor-Light;
+
+            #fill1OfLogo {
+                fill: black;
+            }
+            #fill2OfLogo {
+                fill: black;
+            }
+        }
+
+        & > .main {
+            background-color: $mainBg-Light;
+            color: $txtColor-Light;
+        }
+
+        .box__content {
+            background-color: $white;
+        }
+
+        .boxChartCircle__content {
+            color: $txtColor-Light;
+            background-color: $white;
+        }
+
+        .boxChartLine__content {
+            color: $txtColor-Light;
+            background-color: $white;
+
+            &__top__combo-box {
+                border: 1px solid rgba($color: #79858b, $alpha: 0.3);
+
+                & > select {
+                    color: $txtColor-Light;
+                    background-color: $white;
+                }
+            }
+        }
+
+        .box-user {
+            background-color: $white;
+        }
+
+        .user-tab {
+            color: $txtColor-Light;
+            &:hover {
+                background-color: $mainBg-Light;
+            }
+        }
+
+        .theme-setting {
+            background-color: $white;
+            color: $txtColor-Light;
+        }
+    }
+
+    &.top_nav-color {
+        &__white {
+            & > .topNav {
+                background-color: $white;
+                color: $txtColor-Light;
+
+                #fill1OfLogo {
+                    fill: black;
+                }
+                #fill2OfLogo {
+                    fill: black;
+                }
+            }
+        }
+        &__black {
+            & > .topNav {
+                background-color: $themeBlack;
+                color: $white;
+
+                #fill1OfLogo {
+                    fill: white;
+                }
+                #fill2OfLogo {
+                    fill: white;
+                }
+            }
+        }
+        &__purple {
+            & > .topNav {
+                background-color: $themePurple;
+                color: $white;
+
+                #fill1OfLogo {
+                    fill: white;
+                }
+                #fill2OfLogo {
+                    fill: white;
+                }
+            }
+        }
+        &__green {
+            & > .topNav {
+                background-color: $themeGreen;
+                color: $white;
+
+                #fill1OfLogo {
+                    fill: white;
+                }
+                #fill2OfLogo {
+                    fill: white;
+                }
+            }
+        }
+        &__red {
+            & > .topNav {
+                background-color: $themeRed;
+                color: $white;
+
+                #fill1OfLogo {
+                    fill: white;
+                }
+                #fill2OfLogo {
+                    fill: white;
+                }
+            }
+        }
+        &__blue {
+            & > .topNav {
+                background-color: $themeBlue;
+                color: $white;
+
+                #fill1OfLogo {
+                    fill: white;
+                }
+                #fill2OfLogo {
+                    fill: white;
+                }
+            }
+        }
+    }
+
+    &.sidebar-color {
+        &__white {
+            & > .sidebar {
+                background-color: $white;
+                color: $txtColor-Light;
+
+                #fill1OfLogo {
+                    fill: black;
+                }
+                #fill2OfLogo {
+                    fill: black;
+                }
+            }
+        }
+        &__black {
+            & > .sidebar {
+                background-color: $themeBlack;
+                color: $white;
+
+                #fill1OfLogo {
+                    fill: white;
+                }
+                #fill2OfLogo {
+                    fill: white;
+                }
+            }
+        }
+        &__purple {
+            & > .sidebar {
+                background-color: $themePurple;
+                color: $white;
+
+                #fill1OfLogo {
+                    fill: white;
+                }
+                #fill2OfLogo {
+                    fill: white;
+                }
+            }
+        }
+        &__green {
+            & > .sidebar {
+                background-color: $themeGreen;
+                color: $white;
+
+                #fill1OfLogo {
+                    fill: white;
+                }
+                #fill2OfLogo {
+                    fill: white;
+                }
+            }
+        }
+        &__red {
+            & > .sidebar {
+                background-color: $themeRed;
+                color: $white;
+
+                #fill1OfLogo {
+                    fill: white;
+                }
+                #fill2OfLogo {
+                    fill: white;
+                }
+            }
+        }
+        &__blue {
+            & > .sidebar {
+                background-color: $themeBlue;
+                color: $white;
+
+                #fill1OfLogo {
+                    fill: white;
+                }
+                #fill2OfLogo {
+                    fill: white;
+                }
             }
         }
     }

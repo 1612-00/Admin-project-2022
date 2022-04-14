@@ -6,8 +6,6 @@
     &__content {
         position: relative;
         padding: 1.5rem 0.5rem;
-        color: #fff;
-        background-color: $mainColor;
         border-radius: 5px;
         @include flex(center, flex-start);
 

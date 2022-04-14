@@ -1,8 +1,16 @@
-$mainBg: #303a45;
 $mainColor: #192430;
-$white: #fff;
-$oceanColor: #398bf7;
+
+$mainBg: #303a45;
+$mainBg-Light: #f4f6f9;
+
 $txtColor: #e6e9ec;
+$txtColor-Light: #4e5457;
+
+$white: #fff;
+$dangerColor: #ef5350;
+$dangerColorHover: #cb4744;
+$oceanColor: #398bf7;
+
 $overlay: #262e37;
 
 $mobile-width: 600px;
@@ -18,3 +26,18 @@ $topNavHeight: 3.5rem;
 $sidebarWidth: 15rem;
 $sidebarHideWidth: 4.5rem;
 $spacing: 2rem;
+
+
+// Color theme
+$themeWhite: #fff;
+$themeBlack: #192430;
+$themePurple: #745af2;
+$themeGreen: #06d79c;
+$themeRed: #ef5350;
+$themeBlue: #398bf7;
+
+$themeBlackHover: #242a33;
+$themePurpleHover: #634dce;
+$themeGreenHover:#05b785;
+$themeRedHover: #cb4744;
+$themeBlueHover: #3076d2;

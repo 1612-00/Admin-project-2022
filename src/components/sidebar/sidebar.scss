@@ -14,8 +14,18 @@
         transition: all 0.2s ease;
 
         .sidebar__user__name,
-        .sidebar-nav-item__tab__text {
+        .sidebar-nav-item__tab__content__text {
             display: none;
+        }
+
+        &:hover {
+            width: $sidebarWidth;
+            transition: all 0.2s ease;
+
+            .sidebar__user__name,
+            .sidebar-nav-item__tab__content__text {
+                display: block;
+            }
         }
     }
 
@@ -28,7 +38,7 @@
             transition: all 0.2s ease;
 
             .sidebar__user__name,
-            .sidebar-nav-item__tab__text {
+            .sidebar-nav-item__tab__content__text {
                 display: block;
             }
         }
@@ -50,7 +60,7 @@
         &__name {
             margin-left: 1rem;
             font-size: smaller;
-            opacity: 0.7;
+            opacity: 1;
         }
     }
 

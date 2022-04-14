@@ -7,26 +7,58 @@ const SidebarNavItem = ({ item }) => {
     const location = useLocation();
 
     useEffect(() => {
-        const curPath = window.location.pathname;    
+        const curPath = window.location.pathname;
         setActiveTab(curPath);
-    }, [location])
+    }, [location]);
 
     return (
         <div className='sidebar-nav-item'>
             <div className='main__text'>{item.text}</div>
             {item.tab.map((nav, index) => (
-                <Link
-                    className={`sidebar-nav-item__tab ${nav.link === activeTab ? 'active' : ''}`}
-                    key={index}
-                    to={nav.link}
-                >
-                    <div className='sidebar-nav-item__tab__icon'>
-                        {nav.icon}
-                    </div>
-                    <div className='sidebar-nav-item__tab__text'>
-                        {nav.text}
-                    </div>
-                </Link>
+                <>
+                    <Link
+                        className={`sidebar-nav-item__tab ${
+                            nav.link === activeTab ? 'active' : ''
+                        } ${nav.childNav.length !== 0 ? 'main-tab' : ''}`}
+                        key={index}
+                        to={nav.link}
+                    >
+                        <div className='sidebar-nav-item__tab__content'>
+                            <div className='sidebar-nav-item__tab__content__icon'>
+                                {nav.icon}
+                            </div>
+                            <div className='sidebar-nav-item__tab__content__text'>
+                                {nav.text}
+                            </div>
+                        </div>
+                        {/* {nav.childNav.length !== 0 ? (
+                            <div className='sidebar-nav-item__tab__children'>
+                                <div className='sidebar-nav-item__tab__children__number'>
+                                    {nav.childNav.length}
+                                </div>
+                                <i class='bx bx-chevron-right'></i>
+                            </div>
+                        ) : null} */}
+                    </Link>
+                    {/* Have children tab */}
+                    {/* {nav.childNav.length !== 0 ? (
+                        <div
+                            className={`sidebar-nav-item__sub ${
+                                nav.link === activeTab ? 'show' : ''
+                            }`}
+                        >
+                            {nav.childNav.map((childNav, index) => (
+                                <Link
+                                    className='sidebar-nav-item__sub__tab'
+                                    key={index}
+                                    to={childNav.link}
+                                >
+                                    {childNav.text}
+                                </Link>
+                            ))}
+                        </div>
+                    ) : null} */}
+                </>
             ))}
         </div>
     );
