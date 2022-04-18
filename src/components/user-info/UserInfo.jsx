@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import images from '../../constants/images';
 import './userInfo.scss';
+import { AuthContext } from './../../contexts/AuthContext';
 
 const userInfoSelected = [
     {
@@ -33,7 +34,13 @@ const UserTab = ({ tab }) => {
     );
 };
 
-const UserInfo = ({show}) => {
+const UserInfo = ({ show }) => {
+    // Auth Context
+    const {
+        state: { user },
+        logout,
+    } = useContext(AuthContext);
+
     return (
         <div className={`box-user ${show === true ? 'show' : ''}`}>
             <div className='box-user__top'>
@@ -41,7 +48,9 @@ const UserInfo = ({show}) => {
                     <img src={images.user1} alt='' />
                 </div>
                 <div className='box-user__top__info'>
-                    <span className='box-user__top__info__name'>John Deo</span>
+                    <span className='box-user__top__info__name'>
+                        {user.username}
+                    </span>
                     <span className='box-user__top__info__email'>
                         info@wrappixel.com
                     </span>
@@ -60,7 +69,7 @@ const UserInfo = ({show}) => {
                 <hr />
             </div>
             <div className='box-user__logout'>
-                <button>Logout</button>
+                <button onClick={() => logout()}>Logout</button>
             </div>
         </div>
     );

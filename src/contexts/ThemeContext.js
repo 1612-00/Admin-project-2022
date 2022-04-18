@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from 'react';
+import { createContext, useReducer } from 'react';
 import { themeReducer } from '../reducers/ThemeReducer';
 import {
     CHANGE_THEME_MOD,

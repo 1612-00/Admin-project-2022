@@ -1,6 +1,7 @@
 @use '../../scss/abstracts/' as *;
 
 .dashboard {
+    margin-top: calc($topNavHeight + 2rem);
     width: 100%;
 
     &__content {

@@ -1,0 +1,23 @@
+@use '../../scss/abstracts/' as *;
+
+.product {
+    max-width: 1550px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $topNavHeight;
+    padding: 1.5rem;
+
+    &__content {
+        padding: 1rem;
+        background-color: $white;
+        -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.13);
+        box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.13);
+        height: 80vh;
+        width: 100%;
+        border-radius: 3px;
+        
+        &__wrapper {
+
+        }
+    }
+}

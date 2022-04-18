@@ -1,0 +1,55 @@
+.register {
+    &__title {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+
+        &__input {
+            margin: 5px 0;
+            height: 50px;
+            border-radius: 10px;
+            border: 1px solid gray;
+            font-size: 18px;
+            padding-left: 20px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        &__btn {
+            float: left;
+            width: 40%;
+            height: 40px;
+            margin-top: 20px;
+            margin-left: 30%;
+            background-color: white;
+            border: 2px solid red;
+            border-radius: 30px;
+            font-size: 17px;
+            outline: none;
+            cursor: pointer;
+
+            &:focus {
+                outline: none;
+            }
+
+            &:hover {
+                background-color: #eee;
+            }
+
+            &:active {
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+.input-firstName {
+    margin-right: 10px;
+}

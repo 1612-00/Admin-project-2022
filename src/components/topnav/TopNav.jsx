@@ -5,7 +5,7 @@ import UserInfo from '../user-info/UserInfo';
 
 const TopNav = () => {
     const [sideBarStatus, setSideBarStatus] = useState(0);
-    const [boxInfoState, setBoxInfoState] = useState(false)
+    const [boxInfoState, setBoxInfoState] = useState(false);
 
     const hideSideBar = () => {
         if (sideBarStatus === 0) {
@@ -23,7 +23,7 @@ const TopNav = () => {
 
     const showBoxInfo = () => {
         setBoxInfoState(!boxInfoState);
-    }
+    };
 
     return (
         <div className='topNav'>

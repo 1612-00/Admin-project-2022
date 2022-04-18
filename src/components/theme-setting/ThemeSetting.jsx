@@ -30,7 +30,7 @@ const ColorChoose = ({ type, stateColor }) => {
         );
 
         if (colorClass !== null) setCurrColor(colorClass.id);
-    }, []);
+    }, [currColor, type]);
 
     return (
         <>
@@ -143,7 +143,7 @@ const ModChoose = ({ left, right, isChoose }) => {
         );
 
         if (themeClass !== null) setCurrMode(themeClass.id);
-    }, []);
+    }, [currMode]);
 
     return (
         <div className='mod-choose'>
