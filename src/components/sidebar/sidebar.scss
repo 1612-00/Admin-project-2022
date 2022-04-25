@@ -61,6 +61,10 @@
             margin-left: 1rem;
             font-size: smaller;
             opacity: 1;
+            width: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
 

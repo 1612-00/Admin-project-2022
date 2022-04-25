@@ -1,0 +1,73 @@
+@use '../../../scss/abstracts/' as *;
+
+.profile-tab {
+    &__title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1.5rem;
+
+        @include mobile {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        &__item {
+            &__text {
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            &__input {
+                border: none;
+                background-color: rgba($color: #a89d9d, $alpha: 0.1);
+                width: 100%;
+                height: 3rem;
+                padding: 0 1rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                outline: none;
+                border-radius: 3px;
+
+                &:focus {
+                    outline: 2px solid rgb(76, 76, 223);
+                }
+
+                &:disabled {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+
+    &__btnUpdate {
+        margin-top: 2rem;
+
+        & > button {
+            border: none;
+            outline: none;
+            padding: 1rem 2rem;
+            background-color: rgb(76, 76, 223);
+            color: white;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+    }
+}
+
+.resetPass {
+    &__item {
+        margin-bottom: 2rem;
+    }
+
+    &__text {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+}

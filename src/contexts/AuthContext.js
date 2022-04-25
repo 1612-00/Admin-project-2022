@@ -1,6 +1,8 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 import { AuthReducer } from './../reducers/AuthReducer';
-import { SET_AUTH } from './constant';
+import { SET_AUTH, apiUrl, LOCAL_STORAGE_TOKEN_NAME } from './constant';
+import axios from 'axios';
+import setAuthToken from './../ultil/setAuthToken';
 
 const initialState = {
     isAuthenticated: false,
@@ -14,73 +16,26 @@ const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AuthReducer, initialState);
 
     // Authenticated User
-    // const loadUser = /*async*/ (user) => {
-    //     if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
-    //       setAuthToken(localStorage[LOCAL_STORAGE_TOKEN_NAME]);
-    //     }
+    const loadUser = async () => {
+        if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
+            setAuthToken(localStorage[LOCAL_STORAGE_TOKEN_NAME]);
+        }
 
-    //     try {
-    //           const res = await axios.get(`${apiUrl}/user`);
-
-    //           if (res.data.success) {
-    //         dispatch({
-    //             type: SET_AUTH,
-    //             payload: {
-    //                 isAuthenticated: true,
-    //                 user: /*res.data.user*/ user,
-    //             },
-    //         });
-    //           }
-    //     } catch (error) {
-    //           localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
-    //           setAuthToken(null);
-    //         dispatch({
-    //             type: SET_AUTH,
-    //             payload: {
-    //                 isAuthenticated: false,
-    //                 user: null,
-    //             },
-    //         });
-    //     }
-    // };
-
-    // useEffect(() => loadUser(), []);
-
-    // Login
-    const loginUser = /*async*/ (user) => {
         try {
-            // const { username, password } = user;
-            // console.log(username);
-            // if (
-            //   username.includes("'") ||
-            //   password.includes("'") ||
-            //   username.includes('"') ||
-            //   password.includes('"')
-            // )
-            //   return { success: false };
+            const res = await axios.get(`${apiUrl}/auth`);
 
-            //   const res = await axios.post(`${apiUrl}/user/login`, user);
-            //   if (res.data.success) {
-            //     localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, res.data.accessToken);
-            //   }
-
-            const checkLogin =
-                user.username === 'admin' && user.password === 'admin123'
-                    ? true
-                    : false;
-
-            if (checkLogin)
+            if (res.data.success) {
                 dispatch({
                     type: SET_AUTH,
                     payload: {
                         isAuthenticated: true,
-                        user: /*res.data.user*/ user,
+                        user: res.data.user,
                     },
                 });
-            return /*res.data*/ checkLogin;
+            }
         } catch (error) {
-            // if (error.response.data) return error.response.data;
-            // else return { success: false, message: error.message };
+            localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+            setAuthToken(null);
             dispatch({
                 type: SET_AUTH,
                 payload: {
@@ -88,32 +43,64 @@ const AuthContextProvider = ({ children }) => {
                     user: null,
                 },
             });
+        }
+    };
+
+    useEffect(() => loadUser(), []);
+
+    // Login
+    const loginUser = async (user) => {
+        try {
+            const res = await axios.post(`${apiUrl}/auth/login`, user);
+            if (res.data.success) {
+                localStorage.setItem(
+                    LOCAL_STORAGE_TOKEN_NAME,
+                    res.data.assetToken
+                );
+                dispatch({
+                    type: SET_AUTH,
+                    payload: {
+                        isAuthenticated: true,
+                        user: res.data.user,
+                    },
+                });
+                loadUser();
+                return true;
+            }
+        } catch (error) {
+            if (error.response.data) return error.response.data;
             return false;
         }
     };
 
     // Register
-    // const registerUser = async (user) => {
-    //     try {
-    //         const res = await axios.post(`${apiUrl}/user/register`, user);
-    //         if (res.data.success) {
-    //             localStorage.setItem(
-    //                 LOCAL_STORAGE_TOKEN_NAME,
-    //                 res.data.accessToken
-    //             );
-    //         }
-
-    //         loadUser();
-    //         return res.data;
-    //     } catch (error) {
-    //         if (error.response.data) return error.response.data;
-    //         else return { success: false, message: error.message };
-    //     }
-    // };
+    const registerUser = async (user) => {
+        try {
+            const res = await axios.post(`${apiUrl}/auth/register`, user);
+            if (res.data.success) {
+                localStorage.setItem(
+                    LOCAL_STORAGE_TOKEN_NAME,
+                    res.data.assetToken
+                );
+                dispatch({
+                    type: SET_AUTH,
+                    payload: {
+                        isAuthenticated: true,
+                        user: res.data.user,
+                    },
+                });
+                loadUser();
+                return true;
+            }
+        } catch (error) {
+            if (error.response.data) return error.response.data;
+            else return false;
+        }
+    };
 
     // Logout
     const logout = async () => {
-        // localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+        localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
         dispatch({
             type: SET_AUTH,
             payload: {
@@ -123,7 +110,53 @@ const AuthContextProvider = ({ children }) => {
         });
     };
 
-    const AuthContextData = { state, loginUser, /*registerUser,*/ logout };
+    // Update info
+    const updateInfo = async (userUpdate) => {
+        const { fullName, phoneNumber, address, dob } = userUpdate;
+
+        if (!fullName) {
+            return { success: false, message: 'Missing name' };
+        }
+
+        if (
+            fullName === state.user.fullName &&
+            phoneNumber === state.user.phoneNumber &&
+            address === state.user.address &&
+            dob === state.user.dob
+        ) {
+            return { success: false, message: 'There is not change' };
+        }
+
+        try {
+            const userId = state.user._id;
+            const res = await axios.put(`${apiUrl}/auth/`, {
+                userId,
+                userUpdate,
+            });
+
+            if (res.data.success) {
+                dispatch({
+                    type: SET_AUTH,
+                    payload: {
+                        isAuthenticated: true,
+                        user: res.data.user,
+                    },
+                });
+                return { success: true, message: 'Update successfully' };
+            }
+        } catch (error) {
+            if (error.response.data) return error.response.data;
+            else return { success: false, message: 'Server error' };
+        }
+    };
+
+    const AuthContextData = {
+        state,
+        loginUser,
+        registerUser,
+        logout,
+        updateInfo,
+    };
 
     return (
         <AuthContext.Provider value={AuthContextData}>

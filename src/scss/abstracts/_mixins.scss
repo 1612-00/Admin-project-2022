@@ -6,6 +6,12 @@
     justify-content: $justify-content;
 }
 
+@mixin minScreen {
+    @media only screen and (max-width: $minScreen) {
+        @content;
+    }
+}
+
 @mixin tablet {
     @media only screen and (max-width: $tablet-width) {
         @content;

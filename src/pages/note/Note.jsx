@@ -5,18 +5,27 @@ import { NoteContext } from './../../contexts/NoteContext';
 
 const NoteColorChoose = () => {
     // Note Context
-    const { updateColor } = useContext(NoteContext);
-    const [currColor, setCurrColor] = useState('purple');
+    const {
+        noteState: { noteFocus },
+        updateColor,
+    } = useContext(NoteContext);
+    const [currColor, setCurrColor] = useState(
+        noteFocus !== null ? noteFocus.color : 'purple'
+    );
 
-    const changeColor = (color) => {
+    const changeColor = async (color) => {
         setCurrColor(color);
         // Get id of element focus
         const eFocus = document.getElementsByClassName('focus');
         if (eFocus.length !== 0) {
             const idEFocus = eFocus[0].id.split('-')[2];
-            updateColor(idEFocus, color);
+            await updateColor(idEFocus, color);
         }
     };
+
+    useEffect(() => {
+        setCurrColor(noteFocus !== null ? noteFocus.color : 'purple');
+    }, [noteFocus]);
 
     return (
         <div className='noteColorChoose'>
@@ -90,40 +99,37 @@ const Note = () => {
         noteState: { notes },
         addNote,
         updateNote,
+        getAllNotes,
     } = useContext(NoteContext);
 
     const [isOpen, setIsOpen] = useState(false);
     const [noteArr, setNoteArr] = useState([...notes]);
 
     const addNewNote = () => {
-        const note = {
-            id: notes.length,
-            text: 'dummy Title',
-            color: 'purple',
-            date: new Date().toLocaleDateString(),
-        };
-        addNote(note);
+        addNote();
     };
 
-    const updateText = (event) => {
+    const updateText = async (event) => {
         // Get id of element focus
         const eFocus = document.getElementsByClassName('focus');
         if (eFocus.length !== 0) {
             const idEFocus = eFocus[0].id.split('-')[2];
-
-            updateNote(idEFocus, event.target.value);
+            await updateNote(idEFocus, event.target.value);
         }
     };
 
     const searchNote = (event) => {
         const noteFilter = notes.filter(
-            (note) => note.text.indexOf(event.target.value) !== -1
+            (note) => note.content.indexOf(event.target.value) !== -1
         );
         setNoteArr(noteFilter);
     };
 
     useEffect(() => {
-        setNoteArr([...notes]);
+        const getNote = async () => {
+            setNoteArr(await getAllNotes());
+        };
+        getNote();
     }, [notes]);
 
     return (
@@ -148,9 +154,9 @@ const Note = () => {
                                 {noteArr.length !== 0 ? (
                                     noteArr.map((item, index) => (
                                         <NoteElement
-                                            id={item.id}
+                                            id={item._id}
                                             key={index}
-                                            text={item.text}
+                                            content={item.content}
                                             color={item.color}
                                             date={item.date}
                                         />

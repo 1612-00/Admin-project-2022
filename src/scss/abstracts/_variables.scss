@@ -15,6 +15,7 @@ $overlay: #262e37;
 
 $mobile-width: 600px;
 $tablet-width: 990px;
+$minScreen: 1250px;
 
 $fontSizeNormal: 1rem;
 $fontSizeMedium: 1.25rem;
@@ -27,7 +28,6 @@ $sidebarWidth: 15rem;
 $sidebarHideWidth: 4.5rem;
 $spacing: 2rem;
 
-
 // Color theme
 $themeWhite: #fff;
 $themeBlack: #192430;
@@ -39,11 +39,17 @@ $themeYellow: #ffb22b;
 
 $themeBlackHover: #242a33;
 $themePurpleHover: #634dce;
-$themeGreenHover:#05b785;
+$themeGreenHover: #05b785;
 $themeRedHover: #cb4744;
 $themeBlueHover: #3076d2;
 $themeYellowHover: #d99725;
 
 // Authorization css value
-$loginPageBg: #e2e2e5;
-$loginFormBg: #474a59;
+// $loginPageBg: #e2e2e5;
+// $loginFormBg: #474a59;
+
+$loginPageBg: #3b7cdd;
+
+$loginFormMaxHeight: 750px;
+$registerFormMaxHeight: 850px;
+$loginFormMaxWidth: 1400px;

@@ -3,10 +3,8 @@ import './product.scss';
 
 const Product = () => {
     return <div className='product'>
-        <div className="product__content">
-            <div className="product__content__wrapper">
-                Product
-            </div>
+        <div className="product-layout">
+            
         </div>
     </div>;
 };

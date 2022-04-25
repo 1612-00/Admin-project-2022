@@ -1,4 +1,10 @@
-import { ADD_NOTE, DELETE_NOTE, UPDATE_NOTE } from './../contexts/constant';
+import {
+    ADD_NOTE,
+    DELETE_NOTE,
+    UPDATE_NOTE,
+    GET_ALL_NOTE,
+    SET_NOTE_FOCUS,
+} from './../contexts/constant';
 export const noteReducer = (state, action) => {
     const { type, payload } = action;
 
@@ -22,6 +28,18 @@ export const noteReducer = (state, action) => {
             return {
                 ...state,
                 notes: newNotes,
+            };
+
+        case GET_ALL_NOTE:
+            return {
+                ...state,
+                notes: payload,
+            };
+
+        case SET_NOTE_FOCUS:
+            return {
+                ...state,
+                noteFocus: payload,
             };
 
         default:

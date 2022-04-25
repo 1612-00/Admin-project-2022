@@ -2,30 +2,42 @@ import React, { useContext } from 'react';
 import './noteElement.scss';
 import { NoteContext } from './../../contexts/NoteContext';
 
-const NoteElement = ({ id, text, color, date }) => {
+const NoteElement = ({ id, content, color, date }) => {
     // Note Context
-    const { deleteNote } = useContext(NoteContext);
+    const {
+        noteState: { notes },
+        deleteNote,
+        setNodeFocus
+    } = useContext(NoteContext);
 
     const editNote = () => {
-        document.getElementById('textarea').value = text;
-        for (let i = 0; i < 5; i++) {
-            const noteElement = document.getElementById(`note-element-${i}`);
-            if (i !== id && noteElement) {
-                noteElement.classList.remove('focus');
+        notes.forEach((note) => {
+            if (note._id === id) {
+                setNodeFocus(note);
             }
+        });
+        document.getElementById('textarea').value = content;
+        for (let i = 0; i < notes.length; i++) {
+            const noteElement = document.getElementById(
+                `note-element-${notes[i]._id}`
+            );
+            noteElement.classList.remove('focus');
         }
         document.getElementById(`note-element-${id}`).classList.add('focus');
     };
 
     const deleteNoteById = () => {
-        deleteNote(id);
+        const deleteNoteFunc = async () => {
+            await deleteNote(id);
+        };
+        deleteNoteFunc();
     };
 
     return (
         <div id={`note-element-${id}`} className='note-element'>
             <div className={`note-element__color ${color}`}></div>
             <div className='note-element__content'>
-                <div className='note-element__content__text'>{text}</div>
+                <div className='note-element__content__text'>{content}</div>
                 <div className='note-element__content__sub'>
                     <div className='note-element__content__sub__time'>
                         {date}

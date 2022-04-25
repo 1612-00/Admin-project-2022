@@ -1,3 +1,7 @@
+export const apiUrl = "http://localhost:4000/api";
+
+export const LOCAL_STORAGE_TOKEN_NAME = "jwt";
+
 // Theme setting action
 export const CHANGE_THEME_MOD = 'CHANGE_THEME_MOD';
 export const CHANGE_TOPNAV_COLOR = 'CHANGE_TOPNAV_COLOR';
@@ -7,6 +11,8 @@ export const CHANGE_SIDEBAR_COLOR = 'CHANGE_SIDEBAR_COLOR';
 export const ADD_NOTE = 'ADD_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
 export const UPDATE_NOTE = 'UPDATE_NOTE';
+export const GET_ALL_NOTE = 'GET_ALL_NOTE';
+export const SET_NOTE_FOCUS = 'SET_NOTE_FOCUS';
 
 // Authorization action
 export const SET_AUTH = 'SET_AUTH';

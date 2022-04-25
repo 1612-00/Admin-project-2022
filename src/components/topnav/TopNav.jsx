@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './topNav.scss';
 import images from './../../constants/images';
 import UserInfo from '../user-info/UserInfo';
+import { Link } from 'react-router-dom';
 
 const TopNav = () => {
     const [sideBarStatus, setSideBarStatus] = useState(0);
@@ -27,7 +28,7 @@ const TopNav = () => {
 
     return (
         <div className='topNav'>
-            <div className='topNav__logo'>
+            <Link to='/' className='topNav__logo'>
                 <svg
                     width='30'
                     height='30'
@@ -45,7 +46,7 @@ const TopNav = () => {
                     ></path>
                 </svg>
                 <div className='topNav__logo__text active'>adminPro</div>
-            </div>
+            </Link>
             <div className='topNav__content'>
                 <div className='topNav__content__left'>
                     <div className='topNav__content__left__btn-toggle'>
@@ -62,7 +63,10 @@ const TopNav = () => {
                     </div>
                     <div className='topNav__content__right__user'>
                         <img src={images.user1} alt='' onClick={showBoxInfo} />
-                        <UserInfo show={boxInfoState === true ? true : false} />
+                        <UserInfo
+                            show={boxInfoState === true ? true : false}
+                            handleShowBox={setBoxInfoState}
+                        />
                     </div>
                 </div>
             </div>

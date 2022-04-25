@@ -37,11 +37,13 @@
     }
 
     &.dark {
+        // Sidebar
         & > .sidebar {
             background-color: $mainColor;
             color: $txtColor;
         }
 
+        // Top navigation
         & > .topNav {
             background-color: $mainColor;
             color: $txtColor;
@@ -54,6 +56,17 @@
             }
         }
 
+        .box-user {
+            background-color: $mainColor;
+        }
+
+        .user-tab {
+            &:hover {
+                background-color: $mainBg;
+            }
+        }
+
+        // Dashboard page
         & > .main {
             background-color: $mainBg;
             color: $txtColor;
@@ -82,28 +95,23 @@
             }
         }
 
-        .box-user {
-            background-color: $mainColor;
-        }
-
-        .user-tab {
-            &:hover {
-                background-color: $mainBg;
-            }
-        }
-
+        // Theme setting navigation
         .theme-setting {
             background-color: $mainColor;
             color: $txtColor;
-        }
+        }      
+        
+        // Notes page
     }
 
     &.light {
+        // Sidebar
         & > .sidebar {
             background-color: $white;
             color: $txtColor-Light;
         }
 
+        // Top navigation
         & > .topNav {
             background-color: $white;
             color: $txtColor-Light;
@@ -116,6 +124,18 @@
             }
         }
 
+        .box-user {
+            background-color: $white;
+        }
+
+        .user-tab {
+            color: $txtColor-Light;
+            &:hover {
+                background-color: $mainBg-Light;
+            }
+        }
+
+        // Dashboard page
         & > .main {
             background-color: $mainBg-Light;
             color: $txtColor-Light;
@@ -143,24 +163,15 @@
                 }
             }
         }
-
-        .box-user {
-            background-color: $white;
-        }
-
-        .user-tab {
-            color: $txtColor-Light;
-            &:hover {
-                background-color: $mainBg-Light;
-            }
-        }
-
+        
+        // Theme setting navigation
         .theme-setting {
             background-color: $white;
             color: $txtColor-Light;
         }
     }
 
+    // Setting color for top nav
     &.top_nav-color {
         &__white {
             & > .topNav {
@@ -242,6 +253,7 @@
         }
     }
 
+    // Setting color for sidebar
     &.sidebar-color {
         &__white {
             & > .sidebar {
